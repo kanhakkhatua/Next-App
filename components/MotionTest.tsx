@@ -8,11 +8,13 @@ import Axios from "axios";
 
 const fadeInUp = {
     initial: {
-        y: 60,
+        x: -60,
+        // y: 60,
         opacity: 0
     },
     animate: {
-        y: 0,
+        x: 0,
+        // y: 0,
         opacity: 1,
         cursor: "pointer",
         transition: {
@@ -43,16 +45,18 @@ const Index = () => {
         })();
     }, []);
     return (
-        <motion.div drag exit={{ opacity: 0 }} initial="initial" animate="animate">
-            <motion.ul variants={stagger}>
-                {todos &&
-                    todos.map(post => (
-                        <Link key={post?.id} href="/post/[pid]" as={`/post/${post?.id}`}>
-                            <motion.li variants={fadeInUp}>{post?.title}</motion.li>
-                        </Link>
-                    ))}
-            </motion.ul>
-        </motion.div>
+        <>
+            <motion.div drag exit={{ opacity: 0 }} initial="initial" animate="animate" className='rounded-md shadow-md p-4'>
+                <motion.ul variants={stagger}>
+                    {todos &&
+                        todos.map(post => (
+                            <Link key={post?.id} href="/post/[pid]" as={`/post/${post?.id}`}>
+                                <motion.li variants={fadeInUp}>{post?.title}</motion.li>
+                            </Link>
+                        ))}
+                </motion.ul>
+            </motion.div>
+        </>
     );
 };
 
